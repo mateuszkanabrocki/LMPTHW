@@ -51,6 +51,7 @@ def main():
     args = parser.parse_args()
 
     print('>>>', args)
+    print(args.add)  # acces 'add' 
 
     # if '--add' in args:
     #     print(args.accumulate(1, 3))
