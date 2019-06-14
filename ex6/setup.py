@@ -5,12 +5,12 @@ except ImportError:
 
 
 setup(
-    name='NAME',
+    name='find',
     version='1.0',
-    description='DESCRIPTION',
+    description='Module working similarly to find cmdlet.',
     author='Mateusz Kanabrocki',
     author_email='mateusz.kanabrocki@gmail.com',
-    packages=['NAME'],  #same as name
+    packages=['find'],  #same as name
     install_requires=['nose'], #external packages as dependencies
     url='https://github.com/mateuszkanabrocki/projects/tree/master/?',
     download_url='https://github.com/mateuszkanabrocki/projects/tree/master/?',
