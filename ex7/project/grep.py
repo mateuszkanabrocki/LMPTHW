@@ -1,27 +1,5 @@
 #! /usr/bin/env python3
 
-
-# help
-# grep hi file
-# grep "hi" file
-# grep hi *.txt
-# grep hi file*
-# grep a file*.txt
-# return also a file name:
-# "-" stands for standard input
-# -i
-
-# use re module to use regexp
-
-
-# grep -i "hello" file
-# grep -i "this.*one" file1.txt
-# grep -i ".*there.*line" file1.
-
-# grep -i search file
-# grep -i "ha*" file1.
-
-
 import argparse
 from sys import exit
 from pathlib import Path
@@ -82,13 +60,3 @@ def search(args, lines):
 
 if __name__ == '__main__':
     main()
-
-
-
-# string = 'hello 12 hi 89. Howdy 34' #  line
-# pattern = '\d+' #  args.search
-
-# result = re.findall(pattern, string) 
-# print(result)
-
-# # Output: ['12', '89', '34']
