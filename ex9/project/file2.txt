@@ -1,0 +1,134 @@
+Namespace(file='file.txt', parameters='s/2/11/g') 
+
+parameters:  s 2 11
+lines:  ['111111111111111111 This 01111111111111111', '2 is 02', '3 a 03', '4111111111111111111 sample 04', '5111111111111111111 TEXT 05', ' dddd d']
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:   
+line:  T
+line:  h
+line:  i
+line:  s
+line:   
+line:  0
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  
+
+line:  1
+line:  1
+line:   
+line:  i
+line:  s
+line:   
+line:  1
+line:  1
+line:  
+
+line:  3
+line:   
+line:  a
+line:   
+line:  0
+line:  3
+line:  
+
+line:  4
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:   
+line:  s
+line:  a
+line:  m
+line:  p
+line:  l
+line:  e
+line:   
+line:  0
+line:  4
+line:  
+
+line:  5
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:  1
+line:   
+line:  T
+line:  E
+line:  X
+line:  T
+line:   
+line:  0
+line:  5
+line:  
+
+line:   
+line:  d
+line:  d
+line:  d
+line:  d
+line:   
+line:  d
+line:  
+
