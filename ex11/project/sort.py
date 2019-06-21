@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 
 import argparse
-from sys import exit
+from sys import exit, stdin
 
-# give standard input default -q
-# give a file
 # ls | sort
 # ls | sort -r
 # ls | sort -f case
@@ -12,6 +10,7 @@ from sys import exit
 
 # ls -l | ./sort.py
 # ./sort.py file.txt
+
 
 def parse():
     help = "This module works like a sort cmdlet but it's much simpler and less functional."
@@ -37,8 +36,7 @@ def cut_standin():
 def main():
     args = parse()
     if args.file == '-':
-        lines = cut_standin()
-        # print('lines: ', lines)
+        lines = stdin.readlines()
     else:
         try:
             with open(args.file, 'r', errors='ignore') as file:

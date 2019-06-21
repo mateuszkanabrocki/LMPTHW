@@ -1,5 +1,7 @@
 #! /usr/bin/env python3
 
+from sys import stdin
+
 
 def cut_standin():
     lines = []
@@ -12,7 +14,7 @@ def cut_standin():
 
 
 def main():
-    lines = cut_standin()
+    lines = stdin.readlines()
     uniq_lines = list(set(lines))
     for line in uniq_lines:
         print(line)

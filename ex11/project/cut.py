@@ -2,7 +2,7 @@
 
 
 import argparse
-from sys import exit
+from sys import exit, stdin
 
 
 def parse():
@@ -14,16 +14,6 @@ def parse():
     args = parser.parse_args()
     # print(args, '\n')
     return args
-
-
-def cut_standin():
-    text = []
-    while True:
-        try:
-            text.append(input())
-        except EOFError:
-            break
-    return text
 
 
 def read_file(file):
@@ -60,7 +50,7 @@ def main():
     args = parse()
     lines = []
     if args.file == '-':
-        lines = cut_standin()
+        lines = stdin.readlines()
     else:
         text = read_file(args.file)
         for line in text:

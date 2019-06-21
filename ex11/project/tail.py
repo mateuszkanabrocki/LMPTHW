@@ -1,7 +1,6 @@
 #! /usr/bin/env python3
 
-from sys import argv
-from sys import exit
+from sys import argv, exit, stdin
 # history | ./tail -25
 
 
@@ -9,30 +8,29 @@ def arguments(argv):
     try:
         lines_num = int(argv[1].strip('-'))
         return lines_num
-    except:
+    except IndexError:
+        print('Number of lines not gien.')
         exit(1)
-
-
-def standin():
-    text = []
-    while True:
-        try:
-            text.append(input())
-        except EOFError:
-            break
-    return text
 
 
 def main():
     count = arguments(argv)
-    in_lines = standin()
+    if len(argv) > 2:
+        try:
+            lines = []
+            for file in argv[2:]:
+                with open(file, 'r') as f:
+                    for line in f.readlines():
+                        lines.append(line)
+        except FileNotFoundError:
+            print('File not found.')
+            exit(1)
+    else:
+        lines = stdin.readlines()
 
-    out_lines = []
-    for line in in_lines[-count:]:
-        out_lines.append(line)
-
-    for line in out_lines:
-        print(line)
+    result_lines = lines[-count:]
+    for line in result_lines:
+        print(line.strip('\n'))
 
 
 if __name__ == '__main__':

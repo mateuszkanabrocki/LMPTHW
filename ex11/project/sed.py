@@ -2,7 +2,7 @@
 
 
 import argparse
-from sys import exit
+from sys import exit, stdin
 import re
 
 
@@ -14,16 +14,6 @@ def parse():
     args = parser.parse_args()
     # print(args, '\n')
     return args
-
-
-def standin():
-    lines = []
-    while True:
-        try:
-            lines.append(input())
-        except EOFError:
-            break
-    return lines
 
 
 def open_file(file):
@@ -38,24 +28,22 @@ def open_file(file):
         exit(1)
 
 
-def parameters(args):
+def sed(args):
     parameters = args.parameters.strip("'").strip("/").split("/")
-    operation = parameters[0]
     old = parameters[1]
     try:
         new = parameters[2]
     except IndexError:
         parameters.append('')
         new = parameters[2]
-    # print('parameters: ', operation, old, new)
     if len(parameters) < 3:
         print('Not enough parameters.')
         exit(1)
     if args.file == '-':
-        lines = standin()
+        lines = stdin.readlines()
         new_lines = []
         for line in lines:
-            new_lines.append(re.sub(old, new, line))
+            new_lines.append(re.sub(old, new, line.strip('\n')))
             result_text = '\n'.join(new_lines)
         print(result_text)
     else:
@@ -67,7 +55,7 @@ def parameters(args):
 
 
 def main():
-    parameters(parse())
+    sed(parse())
 
 
 if __name__ == '__main__':
