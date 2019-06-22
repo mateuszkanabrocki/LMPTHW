@@ -2,7 +2,7 @@
 
 
 # 1. copy skeleton project - change names: setup.py, app.py, test file
-# 2. make this script executable using: chmod +x script_name.py
+# 2. make this script executable using: chmod oug+x script_name.py (other users and groups)
 # 3. think how to solve the issue - make a research if needed - make a TODO list
 # 4. make any files - if needed
 
