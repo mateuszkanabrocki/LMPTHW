@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.6
+#! /usr/bin/env python3
 
 
 # 1. copy skeleton project - change names: setup.py, app.py, test file
