@@ -6,28 +6,33 @@ import pytest
 this_module = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(this_module, "../project/"))
 
-from ex13a import *
+from ex14 import *
 
 
 def test_push():
-    colors = SingleLinkedList()
+    colors = DoubleLinkedList()
+    colors._invariants()
     colors.push("Pthalo Blue")
     assert colors.count() == 1
     colors.push("Ultramarine Blue")
     assert colors.count() == 2
+    colors._invariants()
 
 
 def test_pop():
-    colors = SingleLinkedList()
+    colors = DoubleLinkedList()
+    colors._invariants()
     colors.push("Magenta")
     colors.push("Alizarin")
     assert colors.pop() == "Alizarin"
     assert colors.pop() == "Magenta"
     assert colors.pop() is None
+    colors._invariants()
 
 
 def test_unshift():
-    colors = SingleLinkedList()
+    colors = DoubleLinkedList()
+    colors._invariants()
     colors.push("Viridian")
     colors.push("Sap Green")
     colors.push("Van Dyke")
@@ -35,25 +40,27 @@ def test_unshift():
     assert colors.unshift() == "Sap Green"
     assert colors.unshift() == "Van Dyke"
     assert colors.unshift() is None
+    colors._invariants()
 
 
-def test_push_begin():
-    colors = SingleLinkedList()
-    colors.push_begin("Cadmium Orange")
+def test_shift():
+    colors = DoubleLinkedList()
+    colors._invariants()
+    colors.shift("Cadmium Orange")
     assert colors.count() == 1
 
-    colors.push_begin("Carbazole Violet")
+    colors.shift("Carbazole Violet")
     assert colors.count() == 2
-
-    assert colors.pop() == "Cadmium Orange"
-    assert colors.count() == 1
     assert colors.pop() == "Carbazole Violet"
+    assert colors.count() == 1
+    assert colors.pop() == "Cadmium Orange"
     assert colors.count() == 0
+    colors._invariants()
 
 
-def test_remove(capsys):
-    print('>>>>>>>>>SDSSD???')
-    colors = SingleLinkedList()
+def test_remove():
+    colors = DoubleLinkedList()
+    colors._invariants()
     colors.push("Cobalt")
     colors.push("Zinc White")
     colors.push("Nickle Yellow")
@@ -63,31 +70,37 @@ def test_remove(capsys):
     assert colors.remove("Perinone") == 2
     colors.dump("after perinone")
     assert colors.remove("Nickle Yellow") == 1
+    colors.dump("after perinone")
     assert colors.remove("Zinc White") == 0
+    colors._invariants()
 
 
 def test_first():
-    colors = SingleLinkedList()
+    colors = DoubleLinkedList()
+    colors._invariants()
     colors.push("Cadmium Red Light")
     assert colors.first() == "Cadmium Red Light"
     colors.push("Hansa Yellow")
     assert colors.first() == "Cadmium Red Light"
-    colors.push_begin("Pthalo Green")
-    assert colors.first() == "Pthalo Green"
+    colors.shift("Pthalo Green")
+    assert colors.first() == "Cadmium Red Light"
+    colors._invariants()
 
 
 def test_last():
-    colors = SingleLinkedList()
+    colors = DoubleLinkedList()
+    colors._invariants()
     colors.push("Cadmium Red Light")
     assert colors.last() == "Cadmium Red Light"
     colors.push("Hansa Yellow")
     assert colors.last() == "Hansa Yellow"
-    colors.push_begin("Pthalo Green")
-    assert colors.last() == "Hansa Yellow"
+    colors.shift("Pthalo Green")
+    assert colors.last() == "Pthalo Green"
+    colors._invariants()
 
 
 def test_get():
-    colors = SingleLinkedList()
+    colors = DoubleLinkedList()
     colors.push("Vermillion")
     assert colors.get(0) == "Vermillion"
     colors.push("Sap Green")

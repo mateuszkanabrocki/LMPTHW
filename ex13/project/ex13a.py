@@ -1,20 +1,11 @@
 #!/usr/bin/env python3
 
-
-# 3. think how to solve the issue - make a research if needed - make a TODO list
-# 4. make any files - if needed
-
-# 5. write code and tests (TDD, make them parallel or leave tests for the end)
-
-# 6. check the whole code again, simplify and clean it
-# 7. check comments
-# 8. type hinting (run mypy if needed)
-# 9. write the documentation
+from typing import Optional
 
 
 class SingleLinkedListNode(object):
 
-    def __init__(self, value, nxt):
+    def __init__(self, value, nxt: 'SingleLinkedListNode'):
         self.value = value
         self.next = nxt
 
@@ -30,31 +21,24 @@ class SingleLinkedList(object):
         self.end = None
         self.numer_of_elements = 0
 
-    def push(self, value):
+    def push(self, value) -> None:
         """Appends a new value on the end of the list."""
-        # create a new node
         new_node = SingleLinkedListNode(value, None)
-        # if there is already a node take the last one
-        # and give it's 'next' value the new node
-        if self.end:
+        # if any node
+        if self.end and self.begin:
             self.end.next = new_node
-        # save new node as the 'end' node
+        else:
+            self.begin, self.end = new_node, new_node
         self.end = new_node
-        # if there is no node in the list save new node
-        # also as the 'begin' node
-        if self.begin is None:
-            self.begin = new_node
         # count the new node
         self.numer_of_elements += 1
 
-    def pop(self):
+    def pop(self) -> Optional[SingleLinkedListNode]:
         """Removes the last item and returns it."""
-        # if there is no element
         if not self.numer_of_elements:
             return None
-        # last element to be poped
-        poped = self.end.value
-        # if there are at least 2 elements
+        last_element = self.end.value
+        # changes after poping:
         if self.numer_of_elements > 2:
             for i in range(self.numer_of_elements - 2):
                 self.end = self.begin.next
@@ -63,52 +47,55 @@ class SingleLinkedList(object):
         else:
             self.end, self.begin = None, None
         self.numer_of_elements -= 1
-        return poped
+        return last_element
 
-    def shift(self, value):
-        """Add a  new element as the first one."""
-        # create a new node
+    def push_begin(self, value) -> None:
+        """Add a new element at the first position."""
         new_node = SingleLinkedListNode(value, None)
-        # if there is already a node take the last one
-        # and give it's 'next' value the new node
-        if self.begin:
+        # if any node
+        if self.end and self.begin:
             new_node.next = self.begin
+        else:
+            self.begin, self.end = new_node, new_node
         self.begin = new_node
-        # if there is no node in the list save new node
-        # also as the 'end' node
-        if self.end is None:
-            self.end = new_node
         # count the new node
         self.numer_of_elements += 1
 
-    def unshift(self):
+    def unshift(self) -> Optional[SingleLinkedListNode]:
         """Removes the first item and returns it."""
-        if not self.numer_of_elements:
-            return None
         first_element = self.begin
         # save second one as begin
         if self.numer_of_elements > 1:
             self.begin = self.begin.next
+        elif self.numer_of_elements == 1:
+            self.begin, self.end = None, None
+        else:
+            return None
         self.numer_of_elements -= 1
         return first_element.value
 
-    def remove(self, remove):
+    def remove(self, remove) -> Optional[int]:
         """Finds a matching item and removes it from the list."""
-        if not self.numer_of_elements:
+        if self.numer_of_elements:
+            current_element = self.begin
+            next_element = self.begin
+            for i in range(self.numer_of_elements + 1):
+                if next_element.value == remove:
+                    current_element.next = next_element.next
+                    self.numer_of_elements -= 1
+                    # it was a first element
+                    if i == 0:
+                        self.begin = self.begin.next
+                    return i
+                else:
+                    current_element = next_element
+                    try:
+                        next_element = next_element.next
+                    except:
+                        print('No element found.')
+        else:
             return None
-        current_element = self.begin
-        next_element = self.begin
-        for i in range(self.numer_of_elements + 1):
-            if next_element.value == remove:
-                current_element.next = next_element.next
-                self.numer_of_elements -= 1
-                if i == 0:
-                    self.begin = self.begin.next
-                return i
-            else:
-                current_element = next_element
-                next_element = next_element.next  # doesn't work for the last element with no 'next' element
-
+      
     def first(self):
         """Returns a *reference* to the first item, does not remove."""
         return self.begin.value
@@ -132,7 +119,7 @@ class SingleLinkedList(object):
         else:
             return None
 
-    def dump(self, mark: str):
+    def dump(self, mark: str) -> None:
         """Debugging function that dumps the contents of the list."""
         print(mark)
         current = self.begin
