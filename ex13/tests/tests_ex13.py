@@ -37,17 +37,17 @@ def test_unshift():
     assert colors.unshift() is None
 
 
-def test_push_begin():
+def test_shift():
     colors = SingleLinkedList()
-    colors.push_begin("Cadmium Orange")
+    colors.shift("Cadmium Orange")
     assert colors.count() == 1
 
-    colors.push_begin("Carbazole Violet")
+    colors.shift("Carbazole Violet")
     assert colors.count() == 2
 
-    assert colors.pop() == "Cadmium Orange"
-    assert colors.count() == 1
     assert colors.pop() == "Carbazole Violet"
+    assert colors.count() == 1
+    assert colors.pop() == "Cadmium Orange"
     assert colors.count() == 0
 
 
@@ -72,8 +72,8 @@ def test_first():
     assert colors.first() == "Cadmium Red Light"
     colors.push("Hansa Yellow")
     assert colors.first() == "Cadmium Red Light"
-    colors.push_begin("Pthalo Green")
-    assert colors.first() == "Pthalo Green"
+    colors.shift("Pthalo Green")
+    assert colors.first() == "Cadmium Red Light"
 
 
 def test_last():
@@ -82,8 +82,8 @@ def test_last():
     assert colors.last() == "Cadmium Red Light"
     colors.push("Hansa Yellow")
     assert colors.last() == "Hansa Yellow"
-    colors.push_begin("Pthalo Green")
-    assert colors.last() == "Hansa Yellow"
+    colors.shift("Pthalo Green")
+    assert colors.last() == "Pthalo Green"
 
 
 def test_get():

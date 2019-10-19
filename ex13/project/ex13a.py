@@ -49,17 +49,18 @@ class SingleLinkedList(object):
         self.numer_of_elements -= 1
         return last_element
 
-    def push_begin(self, value) -> None:
-        """Add a new element at the first position."""
-        new_node = SingleLinkedListNode(value, None)
-        # if any node
-        if self.end and self.begin:
-            new_node.next = self.begin
-        else:
-            self.begin, self.end = new_node, new_node
-        self.begin = new_node
-        # count the new node
-        self.numer_of_elements += 1
+    def shift(self, value) -> None:
+        """Add a new element at the last position."""
+        self.push(value)
+        # new_node = SingleLinkedListNode(value, None)
+        # # if any node
+        # if self.end and self.begin:
+        #     new_node.next = self.begin
+        # else:
+        #     self.begin, self.end = new_node, new_node
+        # self.begin = new_node
+        # # count the new node
+        # self.numer_of_elements += 1
 
     def unshift(self) -> Optional[SingleLinkedListNode]:
         """Removes the first item and returns it."""
