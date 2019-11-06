@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-class DoubleLinkedListNode(object):
+class QueueNode(object):
 
     def __init__(self, value, nxt, prev):
         self.value = value
@@ -13,7 +13,7 @@ class DoubleLinkedListNode(object):
         return f"[{self.value}, {repr(nval)}, {repr(pval)}]"
 
 
-class DoubleLinkedList(object):
+class Queue(object):
 
     def __init__(self):
         self.begin = None
@@ -49,10 +49,10 @@ class DoubleLinkedList(object):
             assert self.begin.prev is None
             assert self.end.next is None
 
-    def push(self, value):
+    def shift(self, value):
         """Appends a new value on the end of the list."""
         # self._invariants()
-        new_node = DoubleLinkedListNode(value, None, self.end)
+        new_node = QueueNode(value, None, self.end)
         # if there is no element
         if self.begin is None:
             # assign the new element to the begin and the end
@@ -63,29 +63,6 @@ class DoubleLinkedList(object):
             self.end.next = new_node
             # new_node.prev = self.end (already done)
             self.end = new_node
-
-    def pop(self):
-        """Removes the last item and returns it."""
-        end = self.end
-        # if there is no elements
-        if self.begin is None:
-            return None
-        # if there is one element
-        elif self.begin is self.end:
-            self.begin = None
-            self.end = None
-            self.detach_node(end)
-            return end.value
-        # if there are 2 or more elements
-        else:
-            self.end.prev.next = None
-            self.end = self.end.prev
-            self.detach_node(end)
-            return end.value
-        
-    def shift(self, value):
-        """Actually just another name for push."""
-        self.push(value)
 
     def unshift(self):
         """Removes the first item (from begin) and returns it."""
