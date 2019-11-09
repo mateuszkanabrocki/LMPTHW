@@ -17,7 +17,8 @@ class DoubleLinkedList(object):
 
     def __init__(self):
         self.begin = None
-        self.end = None
+        # end shouldn't be given here
+        self.end = None 
     
     def detach_node(self, node):
         """You'll need to use this operation sometimes, but mostly 
@@ -48,6 +49,24 @@ class DoubleLinkedList(object):
         else:
             assert self.begin.prev is None
             assert self.end.next is None
+
+    def unshift(self):
+        """Removes the first item (from begin) and returns its value."""
+        # if there is no elements
+        if self.begin is None:
+            return None
+        # if there is one element
+        elif self.begin is self.end:
+            node = self.begin
+            self.begin = None
+            self.end = None
+        # if there is more elements
+        else:
+            node = self.begin
+            self.begin = self.begin.next
+            self.begin.prev = None
+        self.detach_node(node)
+        return node.value
 
     def push(self, value):
         """Appends a new value on the end of the list."""
@@ -86,24 +105,6 @@ class DoubleLinkedList(object):
     def shift(self, value):
         """Actually just another name for push."""
         self.push(value)
-
-    def unshift(self):
-        """Removes the first item (from begin) and returns it."""
-        # if there is no elements
-        if self.begin is None:
-            return None
-        # if there is one element
-        elif self.begin is self.end:
-            node = self.begin
-            self.begin = None
-            self.end = None
-        # if there is more elements
-        else:
-            node = self.begin
-            self.begin = self.begin.next
-            self.begin.prev = None
-        self.detach_node(node)
-        return node.value
 
     def remove(self, value):
         """Finds a matching item and removes it from the list."""
